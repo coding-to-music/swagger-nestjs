@@ -134,7 +134,7 @@ npm install --save @nestjs/swagger swagger-ui-express class-transformer class-va
 npm install --save @nestjs/swagger fastify-swagger class-transformer class-validator
 ```
 
-content_copy
+
 Now setup the initialization of Swagger in your main.ts file.
 
 main.ts
@@ -159,7 +159,7 @@ async function bootstrap() {
 bootstrap();
 ```
 
-content_copy
+
 The setup is complete, start your Nest application npm run start:dev and visit the Swagger endpoint localhost:3000/api.
 
 ![Swagger API after initial setup](https://notiz.dev/assets/img/blog/openapi-in-nestjs/optimized/swagger-api.png)
@@ -185,7 +185,7 @@ nest g res
 ? Would you like to generate CRUD entry points? (Y/n) y
 ```
 
-content_copy
+
 You'll find a new users directory under src containing all the boilerplates for your REST endpoints - module, controller, service, entity and dto files.
 
 Start again the Nest application and you should see the new users endpoints in the Swagger API.
@@ -228,7 +228,7 @@ export class CreateUserDto {
 }
 ```
 
-content_copy
+
 To expose those properties to the Swagger API use @ApiProperty(options) at the property level and pass options like required, default, description and more.
 
 create-user.dto.ts
@@ -245,7 +245,7 @@ export class CreateUserDto {
 }
 ```
 
-content_copy
+
 Refresh the Swagger API and you should see the properties for the CreateProductDto.
 
 createuserdto-properties.png
@@ -264,7 +264,7 @@ import { CreateUserDto } from './create-user.dto';
 export class UpdateUserDto extends PartialType(CreateUserDto) {}
 ```
 
-content_copy
+
 PartialType applies the same properties from CreateUserDto but set to optional.
 
 ## Response
@@ -283,7 +283,7 @@ export class User {
 }
 ```
 
-content_copy
+
 Additionally, Swagger needs help to pick up the response type. Annotate your REST endpoints with the custom @ApiResponse() specifying the status code and the response type or choose a [short-hand API response](https://docs.nestjs.com/openapi/operations#responses) (e.g. @ApiOkResponse(), @ApiCreatedResponse(), ...).
 
 - `@ApiOkResponse`: `GET` and `DELETE`
@@ -344,7 +344,7 @@ export class UsersController {
 }
 ```
 
-content_copy
+
 lightbulb
 When the response type is an array, you must indicate it using the array bracket notation ([ ]) around the type or set isArray to true. GET /users response is an array of User annotation looks like this:
 
@@ -374,7 +374,7 @@ nest-cli.json
 }
 ```
 
-content_copy
+
 Before: User entity, CreateUserDto and UsersController with boilerplate.
 
 user.entity.ts
@@ -390,7 +390,73 @@ export class User {
 }
 ```
 
-content_copy
+create-user.dto.ts
+```java
+import { ApiProperty } from '@nestjs/swagger';
+
+export class CreateUserDto {
+  @ApiProperty()
+  email: string;
+  @ApiProperty()
+  password: string;
+  @ApiProperty({ required: false, nullable: true })
+  name?: string | null;
+}```
+
+users.controller.ts
+```java
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
+import { UsersService } from './users.service';
+import { CreateUserDto } from './dto/create-user.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
+import { ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import { User } from './entities/user.entity';
+
+@Controller('users')
+@ApiTags('users')
+export class UsersController {
+  constructor(private readonly usersService: UsersService) {}
+
+  @Post()
+  @ApiCreatedResponse({ type: User })
+  create(@Body() createUserDto: CreateUserDto) {
+    return this.usersService.create(createUserDto);
+  }
+
+  @Get()
+  @ApiOkResponse({ type: [User] })
+  findAll() {
+    return this.usersService.findAll();
+  }
+
+  @Get(':id')
+  @ApiOkResponse({ type: User })
+  findOne(@Param('id') id: string) {
+    return this.usersService.findOne(+id);
+  }
+
+  @Patch(':id')
+  @ApiCreatedResponse({ type: User })
+  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
+    return this.usersService.update(+id, updateUserDto);
+  }
+
+  @Delete(':id')
+  @ApiOkResponse({ type: User })
+  remove(@Param('id') id: string) {
+    return this.usersService.remove(+id);
+  }
+}
+```
+
 After: CLI plugin enabled and without boilerplate. You need to add @ApiHideProperty otherwise the plugin will also expose the password property.
 
 user.entity.ts
