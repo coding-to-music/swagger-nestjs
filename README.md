@@ -135,7 +135,7 @@ npm install --save @nestjs/swagger fastify-swagger class-transformer class-valid
 ```
 
 
-Now setup the initialization of Swagger in your main.ts file.
+Now setup the initialization of Swagger in your `main.ts` file.
 
 main.ts
 ```java
@@ -160,19 +160,23 @@ bootstrap();
 ```
 
 
-The setup is complete, start your Nest application npm run start:dev and visit the Swagger endpoint localhost:3000/api.
+The setup is complete, start your Nest application `npm run start:dev` and visit the Swagger endpoint `localhost:3000/api`
 
 ![Swagger API after initial setup](https://notiz.dev/assets/img/blog/openapi-in-nestjs/optimized/swagger-api.png)
 
 Swagger API after initial setup
 lightbulb
 
-Swagger API will be available at the path you provide in SwaggerModule.setup('api',...) at http://localhost:3000/api. Access the JSON file by opening http://localhost:3000/api-json for express and http://localhost:3000/api/json for fastify.
+Swagger API will be available at the path you provide in 
+- SwaggerModule.setup('api',...) at 
+- http://localhost:3000/api. Access the JSON file by opening 
+- http://localhost:3000/api-json for express and 
+- http://localhost:3000/api/json for fastify.
 
 Generate in the next step CRUD endpoints for a resource like users or products and add type definitions for Swagger.
 
-Generate REST resource
-Use the Nest CLI to generate the boilerplate the resource for users.
+## Generate REST resource
+Use the Nest CLI to [generate the boilerplate](https://trilon.io/blog/introducing-cli-generators-crud-api-in-1-minute#Generating-a-CRUD-API) the resource for users.
 
 ```java
 nest generate resource
@@ -186,19 +190,19 @@ nest g res
 ```
 
 
-You'll find a new users directory under src containing all the boilerplates for your REST endpoints - module, controller, service, entity and dto files.
+You'll find a new `users` directory under `src` containing all the boilerplates for your REST endpoints - module, controller, service, entity and dto files.
 
-Start again the Nest application and you should see the new users endpoints in the Swagger API.
+Start again the Nest application and you should see the new `users` endpoints in the Swagger API.
 
 ![Users endpoints in the Swagger API](https://github.com/coding-to-music/swagger-nestjs/blob/main/images/users-crud-api.png?raw=true)
 
 Users endpoints in the Swagger API
 
 ## Api decorators
-Apply available decorators prefixed with Api to expose the properties for .dto.ts and .entity.ts files and the responses for your CRUD endpoints.
+Apply available decorators prefixed with Api to expose the properties for `.dto.ts` and `.entity.ts` files and the responses for your CRUD endpoints.
 
-Tags
-Group your endpoints together by using @ApiTags(...tags) at the controller level.
+## Tags
+Group your endpoints together by using `@ApiTags(...tags)` at the controller level.
 
 users.controller.ts
 ```java
@@ -217,7 +221,7 @@ export class UsersController {
 Group endpoints with tags
 
 ## Property
-Let's add the following properties name, email, password to the CreateProductDto and mark name as optional.
+Let's add the following properties `name`, `email`, `password` to the `CreateProductDto` and mark name as optional.
 
 create-user.dto.ts
 ```java
@@ -229,7 +233,7 @@ export class CreateUserDto {
 ```
 
 
-To expose those properties to the Swagger API use @ApiProperty(options) at the property level and pass options like required, default, description and more.
+To expose those [properties](https://docs.nestjs.com/openapi/types-and-parameters) to the Swagger API use `@ApiProperty(options)` at the property level and pass options like `required`, `default`, `description` and more.
 
 create-user.dto.ts
 ```java
@@ -245,16 +249,15 @@ export class CreateUserDto {
 }
 ```
 
-
-Refresh the Swagger API and you should see the properties for the CreateProductDto.
+Refresh the Swagger API and you should see the properties for the `CreateProductDto`.
 
 createuserdto-properties.png
-
 
 ![CreateProductDto properties with name optional](https://github.com/coding-to-music/swagger-nestjs/blob/main/images/createuserdto-properties.png?raw=true)
 
 CreateProductDto properties with name optional
-Also have a look at the UpdateProductDto schema in Swagger. The same properties are shown but all of them are marked as optional. This is because of PartialType also called Mapped types provided by Nest.
+
+Also have a look at the `UpdateProductDto` schema in Swagger. The same properties are shown but all of them are marked as optional. This is because of `PartialType` also called [Mapped types](https://docs.nestjs.com/openapi/mapped-types) provided by Nest.
 
 update-user.dto.ts
 ```java
@@ -265,10 +268,10 @@ export class UpdateUserDto extends PartialType(CreateUserDto) {}
 ```
 
 
-PartialType applies the same properties from CreateUserDto but set to optional.
+`PartialType` applies the same properties from `CreateUserDto` but set to optional.
 
 ## Response
-Add the same properties as before to the user.entity.ts and only expose name and email to Swagger.
+Add the same properties as before to the `user.entity.ts` and only expose `name` and `email` to Swagger.
 
 user.entity.ts
 ```java
@@ -284,7 +287,7 @@ export class User {
 ```
 
 
-Additionally, Swagger needs help to pick up the response type. Annotate your REST endpoints with the custom @ApiResponse() specifying the status code and the response type or choose a [short-hand API response](https://docs.nestjs.com/openapi/operations#responses) (e.g. @ApiOkResponse(), @ApiCreatedResponse(), ...).
+Additionally, Swagger needs help to pick up the response type. Annotate your REST endpoints with the custom `@ApiResponse()` specifying the status code and the response type or choose a [short-hand API response](https://docs.nestjs.com/openapi/operations#responses) (e.g. `@ApiOkResponse()`, `@ApiCreatedResponse()`, ...).
 
 - `@ApiOkResponse`: `GET` and `DELETE`
 - `@ApiCreatedResponse`: `POST` and `PATCH`
@@ -346,7 +349,8 @@ export class UsersController {
 
 
 lightbulb
-When the response type is an array, you must indicate it using the array bracket notation ([ ]) around the type or set isArray to true. GET /users response is an array of User annotation looks like this:
+
+When the response type is an `array`, you must indicate it using the array bracket notation (`[ ]`) around the type or set isArray to true. GET /users response is an array of User annotation looks like this:
 
 ```java
 @ApiOkResponse({ type: [User] })
@@ -354,14 +358,14 @@ When the response type is an array, you must indicate it using the array bracket
 @ApiOkResponse({ type: User, isArray: true })
 ```
 
-You'll see the endpoints with the new response type of User.
+You'll see the endpoints with the new response type of `User`.
 
 ![CreateProductDto properties with name optional](https://github.com/coding-to-music/swagger-nestjs/blob/main/images/users-crud-responses.png?raw=true)
 
 CreateProductDto properties with name optional
 
 ## Swagger CLI Plugin
-Exposing the properties and responses to Swagger results in additional boilerplate. Nest commes with a Swagger CLI Plugin to reduce boilerplate in your .dto.ts and .entity.ts files. Enable the plugin in your nest-cli.json file.
+Exposing the properties and responses to Swagger results in additional boilerplate. Nest commes with a Swagger CLI Plugin to reduce boilerplate in your `.dto.ts` and `.entity.ts` files. Enable the plugin in your `nest-cli.json` file.
 
 ```java
 nest-cli.json
@@ -375,7 +379,7 @@ nest-cli.json
 ```
 
 
-Before: User entity, CreateUserDto and UsersController with boilerplate.
+Before: `User entity`, `CreateUserDto` and `UsersController` with boilerplate.
 
 user.entity.ts
 ```java
@@ -457,7 +461,7 @@ export class UsersController {
 }
 ```
 
-After: CLI plugin enabled and without boilerplate. You need to add @ApiHideProperty otherwise the plugin will also expose the password property.
+After: CLI plugin enabled and without boilerplate. You need to add `@ApiHideProperty` otherwise the plugin will also expose the password property.
 
 user.entity.ts
 ```java
