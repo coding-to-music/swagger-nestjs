@@ -192,9 +192,7 @@ You'll find a new users directory under src containing all the boilerplates for 
 
 Start again the Nest application and you should see the new users endpoints in the Swagger API.
 
-users-crud-api.png
-
-Users endpoints in the Swagger API
+![Users endpoints in the Swagger API](https://github.com/coding-to-music/swagger-nestjs/blob/main/images/users-crud-api.png?raw=true)
 
 Users endpoints in the Swagger API
 
@@ -216,7 +214,7 @@ export class UsersController {
 }
 ```
 
-[Group endpoints with tags](https://github.com/coding-to-music/swagger-nestjs/blob/main/images/users-api-tags.png?raw=true)
+![Group endpoints with tags](https://github.com/coding-to-music/swagger-nestjs/blob/main/images/users-api-tags.png?raw=true)
 
 Group endpoints with tags
 
@@ -255,7 +253,7 @@ Refresh the Swagger API and you should see the properties for the CreateProductD
 createuserdto-properties.png
 
 
-[CreateProductDto properties with name optional](https://github.com/coding-to-music/swagger-nestjs/blob/main/images/createuserdto-properties.png?raw=true)
+![CreateProductDto properties with name optional](https://github.com/coding-to-music/swagger-nestjs/blob/main/images/createuserdto-properties.png?raw=true)
 
 CreateProductDto properties with name optional
 Also have a look at the UpdateProductDto schema in Swagger. The same properties are shown but all of them are marked as optional. This is because of PartialType also called Mapped types provided by Nest.
@@ -360,7 +358,7 @@ When the response type is an array, you must indicate it using the array bracket
 
 You'll see the endpoints with the new response type of User.
 
-[CreateProductDto properties with name optional](https://github.com/coding-to-music/swagger-nestjs/blob/main/images/users-crud-responses.png?raw=true)
+![CreateProductDto properties with name optional](https://github.com/coding-to-music/swagger-nestjs/blob/main/images/users-crud-responses.png?raw=true)
 
 CreateProductDto properties with name optional
 
