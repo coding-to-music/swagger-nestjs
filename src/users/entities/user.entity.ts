@@ -1,9 +1,10 @@
-import { ApiProperty } from '@nestjs/swagger';
+// 
+
+import { ApiHideProperty } from '@nestjs/swagger';
 
 export class User {
-  @ApiProperty()
   email: string;
+  @ApiHideProperty()
   password: string;
-  @ApiProperty({ required: false, nullable: true })
   name?: string | null;
 }
