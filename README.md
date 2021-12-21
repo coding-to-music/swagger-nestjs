@@ -216,13 +216,11 @@ export class UsersController {
 }
 ```
 
-users-api-tags.png
-
-content_copy
-Group endpoints with tags
+[Group endpoints with tags](https://github.com/coding-to-music/swagger-nestjs/blob/main/images/users-api-tags.png?raw=true)
 
 Group endpoints with tags
-Property
+
+## Property
 Let's add the following properties name, email, password to the CreateProductDto and mark name as optional.
 
 create-user.dto.ts
@@ -256,7 +254,8 @@ Refresh the Swagger API and you should see the properties for the CreateProductD
 
 createuserdto-properties.png
 
-CreateProductDto properties with name optional
+
+[CreateProductDto properties with name optional](https://github.com/coding-to-music/swagger-nestjs/blob/main/images/createuserdto-properties.png?raw=true)
 
 CreateProductDto properties with name optional
 Also have a look at the UpdateProductDto schema in Swagger. The same properties are shown but all of them are marked as optional. This is because of PartialType also called Mapped types provided by Nest.
@@ -361,9 +360,7 @@ When the response type is an array, you must indicate it using the array bracket
 
 You'll see the endpoints with the new response type of User.
 
-users-crud-responses.png
-
-CreateProductDto properties with name optional
+[CreateProductDto properties with name optional](https://github.com/coding-to-music/swagger-nestjs/blob/main/images/users-crud-responses.png?raw=true)
 
 CreateProductDto properties with name optional
 
