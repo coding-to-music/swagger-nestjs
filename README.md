@@ -502,8 +502,6 @@ After: CLI plugin enabled and without boilerplate. You need to add `@ApiHideProp
 
 user.entity.ts
 ```java
-create-user.dto.ts
-users.controller.ts
 import { ApiHideProperty } from '@nestjs/swagger';
 
 export class User {
