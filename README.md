@@ -520,7 +520,8 @@ export class CreateUserDto {
   email: string;
   password: string;
   name?: string | null;
-}```
+}
+```
 
 users.controller.ts
 ```java
