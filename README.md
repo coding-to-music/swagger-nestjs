@@ -162,9 +162,7 @@ bootstrap();
 content_copy
 The setup is complete, start your Nest application npm run start:dev and visit the Swagger endpoint localhost:3000/api.
 
-https://notiz.dev/assets/img/blog/openapi-in-nestjs/optimized/swagger-api.png
-
-Swagger API after initial setup
+![Swagger API after initial setup](https://notiz.dev/assets/img/blog/openapi-in-nestjs/optimized/swagger-api.png)
 
 Swagger API after initial setup
 lightbulb
