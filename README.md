@@ -287,13 +287,13 @@ export class CreateUserDto {
 }
 ```
 
-Refresh the Swagger API and you should see the properties for the `CreateProductDto`.
+Refresh the Swagger API and you should see the properties for the `CreateProductDto`. (should say CreateUserDto ?)
 
 createuserdto-properties.png
 
 ![CreateProductDto properties with name optional](https://github.com/coding-to-music/swagger-nestjs/blob/main/images/createuserdto-properties.png?raw=true)
 
-CreateProductDto properties with name optional
+CreateProductDto properties with name optional (should say CreateUserDto?)
 
 Also have a look at the `UpdateProductDto` schema in Swagger. The same properties are shown but all of them are marked as optional. This is because of `PartialType` also called [Mapped types](https://docs.nestjs.com/openapi/mapped-types) provided by Nest.
 
@@ -421,8 +421,6 @@ Before: `User entity`, `CreateUserDto` and `UsersController` with boilerplate.
 
 user.entity.ts
 ```java
-create-user.dto.ts
-users.controller.ts
 export class User {
   @ApiProperty()
   email: string;
