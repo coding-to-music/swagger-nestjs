@@ -162,6 +162,8 @@ bootstrap();
 content_copy
 The setup is complete, start your Nest application npm run start:dev and visit the Swagger endpoint localhost:3000/api.
 
+https://notiz.dev/assets/img/blog/openapi-in-nestjs/optimized/swagger-api.png
+
 Swagger API after initial setup
 
 Swagger API after initial setup
@@ -190,6 +192,8 @@ You'll find a new users directory under src containing all the boilerplates for 
 
 Start again the Nest application and you should see the new users endpoints in the Swagger API.
 
+users-crud-api.png
+
 Users endpoints in the Swagger API
 
 Users endpoints in the Swagger API
@@ -211,6 +215,8 @@ export class UsersController {
   ...
 }
 ```
+
+users-api-tags.png
 
 content_copy
 Group endpoints with tags
@@ -248,6 +254,8 @@ export class CreateUserDto {
 content_copy
 Refresh the Swagger API and you should see the properties for the CreateProductDto.
 
+createuserdto-properties.png
+
 CreateProductDto properties with name optional
 
 CreateProductDto properties with name optional
@@ -281,13 +289,14 @@ export class User {
 ```
 
 content_copy
-Additionally, Swagger needs help to pick up the response type. Annotate your REST endpoints with the custom @ApiResponse() specifying the status code and the response type or choose a short-hand API response (e.g. @ApiOkResponse(), @ApiCreatedResponse(), ...).
+Additionally, Swagger needs help to pick up the response type. Annotate your REST endpoints with the custom @ApiResponse() specifying the status code and the response type or choose a [short-hand API response](https://docs.nestjs.com/openapi/operations#responses) (e.g. @ApiOkResponse(), @ApiCreatedResponse(), ...).
 
-```java
-@ApiOkResponse: GET and DELETE
-@ApiCreatedResponse: POST and PATCH
-@ApiForbiddenResponse: endpoint might throw forbidden (403) exception
+- `@ApiOkResponse`: `GET` and `DELETE`
+- `@ApiCreatedResponse`: `POST` and `PATCH`
+- `@ApiForbiddenResponse`: endpoint might throw forbidden (`403`) exception
+
 user.entity.ts
+```java
 import {
   Controller,
   Get,
@@ -351,6 +360,8 @@ When the response type is an array, you must indicate it using the array bracket
 ```
 
 You'll see the endpoints with the new response type of User.
+
+users-crud-responses.png
 
 CreateProductDto properties with name optional
 
