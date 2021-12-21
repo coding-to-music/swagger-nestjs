@@ -160,7 +160,11 @@ bootstrap();
 ```
 
 
-The setup is complete, start your Nest application `npm run start:dev` and visit the Swagger endpoint `localhost:3000/api`
+The setup is complete, start your Nest application 
+
+`npm run start:dev` 
+
+and visit the Swagger endpoint `localhost:3000/api`
 
 ![Swagger API after initial setup](https://notiz.dev/assets/img/blog/openapi-in-nestjs/optimized/swagger-api.png)
 
@@ -168,7 +172,7 @@ Swagger API after initial setup
 lightbulb
 
 Swagger API will be available at the path you provide in 
-- SwaggerModule.setup('api',...) at 
+- `SwaggerModule.setup('api',...)` at 
 - http://localhost:3000/api. Access the JSON file by opening 
 - http://localhost:3000/api-json for express and 
 - http://localhost:3000/api/json for fastify.
@@ -405,7 +409,8 @@ export class CreateUserDto {
   password: string;
   @ApiProperty({ required: false, nullable: true })
   name?: string | null;
-}```
+}
+```
 
 users.controller.ts
 ```java
