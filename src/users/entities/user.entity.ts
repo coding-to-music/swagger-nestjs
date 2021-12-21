@@ -1,5 +1,3 @@
-// 
-
 import { ApiHideProperty } from '@nestjs/swagger';
 
 export class User {
