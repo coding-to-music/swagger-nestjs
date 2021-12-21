@@ -30,13 +30,13 @@
 
 ## Installation
 
-```bash
+```java
 $ npm install
 ```
 
 ## Running the app
 
-```bash
+```java
 # development
 $ npm run start
 
@@ -69,7 +69,11 @@ This allows you to directly test file upload in your Swagger documentation and i
 https://notiz.dev/blog/openapi-in-nestjs
 
 
+```java
 nest new swagger-nestjs
+```
+
+```java
 ⚡  We will scaffold your app in a few seconds..
 
 CREATE swagger-nestjs/.eslintrc.js (631 bytes)
@@ -96,13 +100,14 @@ CREATE swagger-nestjs/test/jest-e2e.json (183 bytes)
 $ cd swagger-nestjs
 $ npm run start
 
+                                  
+                    Thanks for installing Nest 🙏
+           Please consider donating to our open collective
+                  to help us maintain this package.
                                                                 
-                                                  Thanks for installing Nest 🙏
-                                         Please consider donating to our open collective
-                                                to help us maintain this package.
-                                                                
-                                                                
-                                       🍷  Donate: https://opencollective.com/nest
+    
+         🍷  Donate: https://opencollective.com/nest
+```
 
 # OpenApi for your REST APIs in NestJS
 Setup Swagger to generate an OpenApi documentation for your REST endpoints.
@@ -117,19 +122,17 @@ You'll find the source code in this repo.
 
 https://github.com/notiz-dev/nestjs-swagger
 
-notiz-dev/nestjs-swagger
-NestJS with OpenApi Swagger documentation
-
 ## Setup Swagger
 
 Start with installing the Swagger dependencies.
 
-BASH
+```java
 # express
 npm install --save @nestjs/swagger swagger-ui-express class-transformer class-validator
 
 # fastify
 npm install --save @nestjs/swagger fastify-swagger class-transformer class-validator
+```
 
 content_copy
 Now setup the initialization of Swagger in your main.ts file.
