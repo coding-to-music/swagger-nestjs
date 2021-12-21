@@ -193,10 +193,27 @@ nest g res
 ? Would you like to generate CRUD entry points? (Y/n) y
 ```
 
+Output:
+```java
+? What name would you like to use for this resource (plural, e.g., "users")? users
+? What transport layer do you use? REST API
+? Would you like to generate CRUD entry points? Yes
+CREATE src/users/users.controller.spec.ts (566 bytes)
+CREATE src/users/users.controller.ts (894 bytes)
+CREATE src/users/users.module.ts (247 bytes)
+CREATE src/users/users.service.spec.ts (453 bytes)
+CREATE src/users/users.service.ts (609 bytes)
+CREATE src/users/dto/create-user.dto.ts (30 bytes)
+CREATE src/users/dto/update-user.dto.ts (164 bytes)
+CREATE src/users/entities/user.entity.ts (21 bytes)
+UPDATE src/app.module.ts (312 bytes)
+```
 
 You'll find a new `users` directory under `src` containing all the boilerplates for your REST endpoints - module, controller, service, entity and dto files.
 
-Start again the Nest application and you should see the new `users` endpoints in the Swagger API.
+Start again the Nest application and you should see the new `users` endpoints in the Swagger API 
+
+http://localhost:3000/api/
 
 ![Users endpoints in the Swagger API](https://github.com/coding-to-music/swagger-nestjs/blob/main/images/users-crud-api.png?raw=true)
 
@@ -220,9 +237,26 @@ export class UsersController {
 }
 ```
 
+Output
+```java
+[Nest] 15802  - 12/21/2021, 7:30:58 AM     LOG [NestFactory] Starting Nest application...
+[Nest] 15802  - 12/21/2021, 7:30:58 AM     LOG [InstanceLoader] AppModule dependencies initialized +50ms
+[Nest] 15802  - 12/21/2021, 7:30:58 AM     LOG [InstanceLoader] UsersModule dependencies initialized +1ms
+[Nest] 15802  - 12/21/2021, 7:30:59 AM     LOG [RoutesResolver] AppController {/}: +1307ms
+[Nest] 15802  - 12/21/2021, 7:30:59 AM     LOG [RouterExplorer] Mapped {/, GET} route +4ms
+[Nest] 15802  - 12/21/2021, 7:30:59 AM     LOG [RoutesResolver] UsersController {/users}: +1ms
+[Nest] 15802  - 12/21/2021, 7:30:59 AM     LOG [RouterExplorer] Mapped {/users, POST} route +2ms
+[Nest] 15802  - 12/21/2021, 7:30:59 AM     LOG [RouterExplorer] Mapped {/users, GET} route +1ms
+[Nest] 15802  - 12/21/2021, 7:30:59 AM     LOG [RouterExplorer] Mapped {/users/:id, GET} route +1ms
+[Nest] 15802  - 12/21/2021, 7:30:59 AM     LOG [RouterExplorer] Mapped {/users/:id, PATCH} route +1ms
+[Nest] 15802  - 12/21/2021, 7:30:59 AM     LOG [RouterExplorer] Mapped {/users/:id, DELETE} route +1ms
+[Nest] 15802  - 12/21/2021, 7:30:59 AM     LOG [NestApplication] Nest application successfully started +3ms
+```
+
+
 ![Group endpoints with tags](https://github.com/coding-to-music/swagger-nestjs/blob/main/images/users-api-tags.png?raw=true)
 
-Group endpoints with tags
+Group endpoints with tags (Top Default line is different)
 
 ## Property
 Let's add the following properties `name`, `email`, `password` to the `CreateProductDto` and mark name as optional.
